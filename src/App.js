@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Form from './Form';
+import Landing from './Landing'
+import {Route, Switch, NavLink} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const start=()=>{
+  if(localStorage.getItem('colonies')!=null){
+      return JSON.parse(localStorage.getItem('colonies'))
+  }else{
+      return [];
+  }
+}
+
+class App extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+      colonies:[...start()]
+    }
+  }
+  grab_data=(e)=>{
+    console.log(e);
+    const x = this.state.colonies
+    x.push(e)
+    localStorage.setItem('colonies', JSON.stringify(x))
+    console.log(this.state)
+  }
+  render(){
+    return (
+      <div className="App">
+        <h1>BeeKeepers Log</h1>
+  
+        
+        <Switch>
+          <Route exact path='/' component={()=><Landing />} />
+          <Route exact path='/create' component={()=><Form grab_data={this.grab_data} />} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
