@@ -4,7 +4,7 @@ class Form extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            colony_number:'',
+            colony_name:'',
             bees:0,
             hives:0
         }
@@ -16,15 +16,19 @@ class Form extends React.Component{
     }
     handleSubmit=(e)=>{
         e.preventDefault();
-        this.props.grab_data(this.state)
-        // window.location.assign(`colony${this.state.colony_number}`);
+        if(this.state.colony_name===''){
+            alert('Please enter a colony number')
+        }else{
+            this.props.grab_data(this.state)
+            window.location.assign('/')
+        }
     }
     render(){
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h4>Enter details of the new Colony</h4>
-                    Colony number: <input name='colony_number' onChange={this.handleChange}/>
+                    Colony name: <input name='colony_name' onChange={this.handleChange}/>
                     <br/>
                     <br/>
                     Number of bees: <input name='bees' onChange={this.handleChange}/>
