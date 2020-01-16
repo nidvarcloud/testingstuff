@@ -22,8 +22,8 @@ class Colony extends React.Component{
             colony_name:this.props.colony_name,
             bees:this.props.bees,
             hives:this.props.hives,
-            date:0,
-            six_days:0
+            date:this.props.date,
+            six_days:this.props.six_days
         }
     }
     update_storage=()=>{
@@ -36,17 +36,13 @@ class Colony extends React.Component{
                 a.six_days = this.state.six_days
             }
         })
-        console.log(this.state)
         localStorage.setItem('colonies', JSON.stringify(x));
     }
     handleChange=(e)=>{
         const x = new Date().toString()
-        
         const y = new Date().getTime();
         const z = y + 518400000
         const d = new Date(z);
-
-
         this.setState({
             date:x,
             six_days:d.toString()
@@ -65,10 +61,21 @@ class Colony extends React.Component{
     }
     new_hive=()=>{
         if(((this.state.bees/this.state.hives)*6)*0.26 > 150){
-            return 'New Hive has been built'
+            return '***New Hive has been built due to overproduction of more than 150g***'
         }else{
-            return 'No new hives were built'
+            return '***No new hives were built as there were less than 150g of honey***'
         }
+    }
+    delete=()=>{
+        const x = this.state.colonies
+        const z = x.findIndex(a=>{
+            if(a.id===this.props.id){
+                return true
+            }
+        })
+        x.splice(z,1)
+        localStorage.setItem('colonies', JSON.stringify(x));
+        window.location.assign('/')
     }
     render(){
         return(
@@ -83,6 +90,9 @@ class Colony extends React.Component{
                 <p><b>Honey / Overproduction:</b> {((this.state.bees/this.state.hives)*6)*0.26}g due in: </p>
                 <p>{this.props.six_days}</p>
                 <p>{this.new_hive()}</p>
+                <br />
+                <br />
+                <button onClick={this.delete}>DELETE</button>
                 <br />
                 <br />
                 <button onClick={this.home}>FINISH</button>
