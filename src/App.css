@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.App a:link{
+  color: black;
+  text-decoration: none;
+}
+.App a:visited{
+  text-decoration: none;
+  color:black;
+}
 
 .App-logo {
   height: 40vmin;

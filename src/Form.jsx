@@ -5,8 +5,10 @@ class Form extends React.Component{
         super(props)
         this.state={
             colony_name:'',
+            id:Math.random(),
             bees:0,
-            hives:0
+            hives:0,
+            date:new Date()
         }
     }
     handleChange=(e)=>{
