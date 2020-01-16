@@ -33,6 +33,7 @@ class Colony extends React.Component{
             }
         })
         console.log(this.state)
+        localStorage.setItem('colonies', JSON.stringify(x));
     }
     handleChange=(e)=>{
         this.setState({
