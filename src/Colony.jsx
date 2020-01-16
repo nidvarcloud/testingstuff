@@ -9,7 +9,7 @@ const start=()=>{
 }
 
 const style={
-    width:'400px',
+    width:'500px',
     margin:'10px auto 10px auto',
     paddingBottom:'20px'
 }
@@ -63,28 +63,29 @@ class Colony extends React.Component{
         this.update_storage()
         window.location.assign('/')
     }
-    time_conversion=()=>{
-        var utcSeconds = 1234567890;
-        var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-        const x = d.setUTCSeconds(utcSeconds);
-        console.log(x)
+    new_hive=()=>{
+        if(((this.state.bees/this.state.hives)*6)*0.26 > 150){
+            return 'New Hive has been built'
+        }else{
+            return 'No new hives were built'
+        }
     }
     render(){
         return(
             <div style={style} onClick={this.props.link}>
-                {this.time_conversion()}
                 {this.display()}
-                <h4 onChange={this.handleChange}>{this.props.colony_name}</h4>
+                <p onChange={this.handleChange}><b>Colony name:</b> {this.props.colony_name}</p>
                 <p><b>Number of bees:</b> <input defaultValue={this.props.bees} name='bees' onChange={this.handleChange}/></p>
                 <p><b>Number of hives:</b> <input defaultValue={this.props.hives} name='hives' onChange={this.handleChange}/></p>
-                <p><b>Created / Edited:</b> {this.props.date}</p>
+                <p><b>Created / Edited:</b></p> 
+                <p>{this.props.date}</p>
                 <br />
                 <p><b>Honey / Overproduction:</b> {((this.state.bees/this.state.hives)*6)*0.26}g due in: </p>
                 <p>{this.props.six_days}</p>
-                <button>EXTRACT HONEY</button>
+                <p>{this.new_hive()}</p>
                 <br />
                 <br />
-                <button onClick={this.home}>BACK HOME</button>
+                <button onClick={this.home}>FINISH</button>
             </div>
         )
     }
