@@ -37,6 +37,7 @@ class App extends React.Component{
                 hives={a.hives}
                 date={a.date}
                 id={a.id}
+                grab_data={this.grab_data}
               />} />
             </Switch>
         </div>

@@ -18,29 +18,44 @@ class Colony extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            colonies:[...start()],
             colony_name:this.props.colony_name,
-            colonies:[...start()]
+            bees:this.props.bees,
+            hives:this.props.hives
         }
+    }
+    update_storage=()=>{
+        const x = this.state.colonies;
+        x.forEach(a=>{
+            if(a.id === this.props.id){
+                a.bees = this.state.bees;
+                a.hives = this.state.hives;
+            }
+        })
+        console.log(this.state)
+    }
+    handleChange=(e)=>{
+        this.setState({
+           [e.target.name] : e.target.value
+        })
     }
     display=()=>{
         console.log(this.state.colonies);
         console.log(this.props.id)
     }
     home=()=>{
+        this.update_storage()
         window.location.assign('/')
     }
     render(){
         return(
             <div style={style} onClick={this.props.link}>
                 {this.display()}
-                <h4>{this.props.colony_name}</h4>
-                <p>Number of bees: {this.props.bees}</p>
-                <p>Number of hives: {this.props.hives}</p>
+                <h4 onChange={this.handleChange}>{this.props.colony_name}</h4>
+                <p>Number of bees: <input defaultValue={this.props.bees} name='bees' onChange={this.handleChange}/></p>
+                <p>Number of hives: <input defaultValue={this.props.hives} name='hives' onChange={this.handleChange}/></p>
                 <p>Date of creation: {this.props.date}</p>
                 <button>EXTRACT HONEY</button>
-                <br />
-                <br />
-                <button>EDIT COLONY</button>
                 <br />
                 <br />
                 <button onClick={this.home}>BACK HOME</button>
