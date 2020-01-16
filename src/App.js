@@ -36,6 +36,7 @@ class App extends React.Component{
                 bees={a.bees}
                 hives={a.hives}
                 date={a.date}
+                six_days={a.six_days}
                 id={a.id}
                 grab_data={this.grab_data}
               />} />

@@ -8,10 +8,22 @@ class Form extends React.Component{
             id:Math.random(),
             bees:0,
             hives:0,
-            date:new Date()
+            date:0,
+            six_days:0
         }
     }
     handleChange=(e)=>{
+        const x = new Date().toString()
+        
+        const y = new Date().getTime();
+        const z = y + 518400000
+        const d = new Date(z);
+
+
+        this.setState({
+            date:x,
+            six_days:d.toString()
+        })
         this.setState({
            [e.target.name] : e.target.value
         })
@@ -24,6 +36,9 @@ class Form extends React.Component{
             this.props.grab_data(this.state)
             window.location.assign('/')
         }
+    }
+    home=()=>{
+        window.location.assign('/')
     }
     render(){
         return(
@@ -40,7 +55,10 @@ class Form extends React.Component{
                     <br/>
                     <br/>
                     <button>CREATE COLONY</button>
+                    <br />
+                    <br />
                 </form>
+                <button onClick={this.home}>HOME</button>
             </div>
         )
     }
