@@ -13,13 +13,10 @@ class Form extends React.Component{
         }
     }
     handleChange=(e)=>{
-        const x = new Date().toString()
-        
+        const x = new Date().toString()   
         const y = new Date().getTime();
         const z = y + 518400000
         const d = new Date(z);
-
-
         this.setState({
             date:x,
             six_days:d.toString()
@@ -30,8 +27,12 @@ class Form extends React.Component{
     }
     handleSubmit=(e)=>{
         e.preventDefault();
+        if(this.state.bees.toString()[0]==0 || this.state.hives.toString()[0]==0){
+            alert('invalid number');
+            return
+        }
         if(this.state.colony_name===''){
-            alert('Please enter a colony number')
+            alert('Please enter a colony name')
         }else{
             this.props.grab_data(this.state)
             window.location.assign('/')
@@ -48,10 +49,10 @@ class Form extends React.Component{
                     Colony name: <input name='colony_name' onChange={this.handleChange}/>
                     <br/>
                     <br/>
-                    Number of bees: <input name='bees' onChange={this.handleChange}/>
+                    Number of bees: <input name='bees' type='number' onChange={this.handleChange}/>
                     <br/>
                     <br/>
-                    Number of hives: <input name='hives' onChange={this.handleChange}/>    
+                    Number of hives: <input name='hives' type='number' onChange={this.handleChange}/>    
                     <br/>
                     <br/>
                     <button>CREATE COLONY</button>

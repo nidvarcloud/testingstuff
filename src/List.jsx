@@ -46,13 +46,13 @@ class Edit extends React.Component{
         })
       }
       handleChange=(e)=>{
-        this.setState({search_value:e.target.value})
+        this.setState({search_value:e.target.value.toLowerCase()})
         this.new_array(e.target.value)
       }
       new_array=(value)=>{
         const x = this.state.colonies;
         const y = x.filter(a=>{
-          if(a.colony_name.includes(value)){
+          if(a.colony_name.toLowerCase().includes(value)){
             return true;
           }
         })
