@@ -26,7 +26,7 @@ class App extends React.Component{
     x.push(e)
     localStorage.setItem('colonies', JSON.stringify(x));
   }
-  show_list=()=>{
+  show_colony=()=>{
     return this.state.colonies.map((a)=>{
       return (
         <div key={Math.random()}>
@@ -53,7 +53,7 @@ class App extends React.Component{
           <Route exact path='/' component={()=><div><Landing /><List /></div>} />
           <Route exact path='/create' component={()=><Form grab_data={this.grab_data} />} />
         </Switch>
-        {this.show_list()}
+        {this.show_colony()}
       </div>
     );
   }

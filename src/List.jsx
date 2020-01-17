@@ -21,11 +21,13 @@ class Edit extends React.Component{
         super(props)
         this.state={
             colony_name:this.props.colony_name,
-            colonies:[...start()]
+            colonies:[...start()],
+            search_value:'',
+            new_list:[]
         }
     }
-    show_list=()=>{
-        return this.state.colonies.map((a)=>{
+    show_list=(array)=>{
+        return array.map((a)=>{
           return (
             <div key={Math.random()}>
               <NavLink to={`/colony${a.id}`}>
@@ -43,10 +45,33 @@ class Edit extends React.Component{
           )
         })
       }
+      handleChange=(e)=>{
+        this.setState({search_value:e.target.value})
+        this.new_array(e.target.value)
+      }
+      new_array=(value)=>{
+        const x = this.state.colonies;
+        const y = x.filter(a=>{
+          if(a.colony_name.includes(value)){
+            return true;
+          }
+        })
+        this.setState({new_list:[...y]},()=>{
+          console.log(this.state.search_value)
+        })
+      }
+      display=()=>{
+        if(this.state.search_value==''){
+          return this.show_list(this.state.colonies)
+        }else{
+          return this.show_list(this.state.new_list)
+        }
+      }
     render(){
         return(
             <div style={style} onClick={this.props.link}>
-                {this.show_list()}
+                Search for Colony: <input onChange={this.handleChange} />
+                {this.display()}
             </div>
         )
     }

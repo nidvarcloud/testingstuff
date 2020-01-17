@@ -8,7 +8,6 @@ class Landing extends React.Component{
                 <NavLink to='/create'>CREATE COLONY</NavLink>
                 <br />
                 <br />
-                Search for Colony: <input />
             </div>
         )
     }
