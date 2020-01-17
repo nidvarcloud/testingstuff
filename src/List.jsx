@@ -47,7 +47,7 @@ class Edit extends React.Component{
       }
       handleChange=(e)=>{
         this.setState({search_value:e.target.value.toLowerCase()})
-        this.new_array(e.target.value)
+        this.new_array(e.target.value.toLowerCase())
       }
       new_array=(value)=>{
         const x = this.state.colonies;
