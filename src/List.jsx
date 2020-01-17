@@ -12,7 +12,7 @@ const start=()=>{
 
 const style={
     width:'400px',
-    margin:'10px auto 10px auto',
+    margin:'20px auto 10px auto',
     paddingBottom:'20px'
 }
 
@@ -71,6 +71,8 @@ class Edit extends React.Component{
         return(
             <div style={style} onClick={this.props.link}>
                 Search for Colony: <input onChange={this.handleChange} />
+                <br />
+                <br />
                 {this.display()}
             </div>
         )

@@ -1,5 +1,22 @@
+body{
+  background-color:orange;
+}
+h1{
+  color:white;
+  background-color:orange;
+  margin:40px auto 40px auto;
+  padding:20px;
+  width:250px;
+  border-radius:5px;
+}
 .App {
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  background-color:white;
+  width:600px;
+  margin:auto;
+  padding:40px;
+  border-radius:15px;
 }
 .App a:link{
   color: black;
@@ -43,11 +60,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-h1{
-  margin:40px auto 40px auto;
-  padding:20px;
-  width:250px;
-  border:1px solid black;
 }
